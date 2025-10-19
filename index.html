@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PureBreeze | Cleaning Products</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .filter-option:hover {
+            background-color: #f0fdf4;
+        }
+        .hamburger-line {
+            transition: all 0.3s ease;
+        }
+        .hamburger-active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger-active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger-active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <header class="sticky top-0 z-50 bg-white shadow-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="bg-green-500 text-white p-2 rounded-lg font-bold text-xl">PureBreeze</div>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="index.html" class="text-gray-800 hover:text-green-500 font-medium">Home</a>
+                <a href="cleaning-products.html" class="text-green-500 font-medium">Cleaning Products</a>
+                <a href="turkish-food.html" class="text-gray-500 font-medium">Turkish Food</a>
+                <a href="#" class="text-gray-800 hover:text-green-500 font-medium">About</a>
+                <a href="#" class="text-gray-800 hover:text-green-500 font-medium">Contact</a>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <div class="relative hidden md:block">
+                    <input type="text" placeholder="Search..." class="border rounded-full py-1 px-4 text-sm focus:outline-none focus:ring-1 focus:ring-green-500">
+                    <i data-feather="search" class="absolute right-3 top-2 text-gray-400"></i>
+                </div>
+                <div class="relative">
+                    <i data-feather="shopping-cart" class="text-gray-700 hover:text-green-500 cursor-pointer"></i>
+                    <span class="absolute -top-2 -right-2 bg-green-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                </div>
+                <button id="hamburger" class="md:hidden focus:outline-none">
+                    <div class="hamburger-line w-6 h-0.5 bg-gray-700 mb-1.5"></div>
+                    <div class="hamburger-line w-6 h-0.5 bg-gray-700 mb-1.5"></div>
+                    <div class="hamburger-line w-6 h-0.5 bg-gray-700"></div>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white py-2 px-4 shadow-lg">
+            <div class="flex flex-col space-y-3">
+                <input type="text" placeholder="Search..." class="border rounded-full py-2 px-4 text-sm focus:outline-none focus:ring-1 focus:ring-green-500 mb-2">
+                <a href="index.html" class="text-gray-800 hover:text-green-500 font-medium py-1 border-b">Home</a>
+                <a href="cleaning-products.html" class="text-green-500 font-medium py-1 border-b">Cleaning Products</a>
+                <a href="turkish-food.html" class="text-gray-500 font-medium py-1 border-b">Turkish Food</a>
+                <a href="#" class="text-gray-800 hover:text-green-500 font-medium py-1 border-b">About</a>
+                <a href="#" class="text-gray-800 hover:text-green-500 font-medium py-1 border-b">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="flex flex-col md:flex-row gap-8">
+            <!-- Filters Sidebar -->
+            <aside class="md:w-64 bg-white p-6 rounded-lg shadow-sm">
+                <h2 class="font-bold text-lg mb-4">Filters</h2>
+                
+                <!-- Categories -->
+                <div class="mb-6">
+                    <h3 class="font-medium text-gray-800 mb-3">Categories</h3>
+                    <div class="space-y-2">
+                        <label class="flex items-center space-x-2 filter-option p-2 rounded cursor-pointer hover:bg-green-50">
+                            <input type="checkbox" class="rounded text-green-500 focus:ring-green-500">
+                            <span>All-Purpose Cleaners</span>
+                        </label>
+                        <label class="flex items-center space-x-2 filter-option p-2 rounded cursor-pointer hover:bg-green-50">
+                            <input type="checkbox" class="rounded text-green-500 focus:ring-green-500">
+                            <span>Glass Cleaners</span>
+                        </label>
+                        <label class="flex items-center space-x-2 filter-option p-2 rounded cursor-pointer hover:bg-green-50">
+                            <input type="checkbox" class="rounded text-green-500 focus:ring-green-500">
+                            <span>Floor Cleaners</span>
+                        </label>
+                        <label class="flex items-center space-x-2 filter-option p-2 rounded cursor-pointer hover:bg-green-50">
+                            <input type="checkbox" class="rounded text-green-500 focus:ring-green-500">
+                            <span>Bathroom Cleaners</span>
+                        </label>
+                        <label class="flex items-center space-x-2 filter-option p-2 rounded cursor-pointer hover:bg-green-50">
+                            <input type="checkbox" class="rounded text-green-500 focus:ring-green-500">
+                            <span>Eco-Friendly</span>
+                        </label>
+                        <label class="flex items-center space-x-2 filter-option p-2 rounded cursor-pointer hover:bg-green-50">
+                            <input type="checkbox" class="rounded text-green-500 focus:ring-green-500">
+                            <span>Cleaning Tools</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Price Range -->
+                <div class="mb-6">
+                    <h3 class="font-medium text-gray-800 mb-3">Price Range</h3>
+                    <div class="space-y-2">
+                        <label class="flex items-center space-x-2 filter-option p-2 rounded cursor-pointer hover:bg-green-50">
+                            <input type="radio" name="price" class="rounded-full text-green-500 focus:ring-green-500">
+                            <span>Under $10</span>
+                        </label>
+                        <label class="flex items-center space-x-2 filter-option p-2 rounded cursor-pointer hover:bg-green-50">
+                            <input type="radio" name="price" class="rounded-full text-green-500 focus:ring-green-500">
+                            <span>$10 - $20</span>
+                        </label>
+                        <label class="flex items-center space-x-2 filter-option p-2 rounded cursor-pointer hover:bg-green-50">
+                            <input type="radio" name="price" class="rounded-full text-green-500 focus:ring-green-500">
+                            <span>Over $20</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <button class="w-full bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded transition duration-300">
+                    Apply Filters
+                </button>
+                <button class="w-full mt-2 text-gray-500 hover:text-gray-700 py-2 px-4 rounded transition duration-300">
+                    Reset All
+                </button>
+            </aside>
+            
+            <!-- Products Grid -->
+            <div class="flex-1">
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="text-2xl md:text-3xl font-bold text-gray-800">Cleaning Products</h1>
+                    <div class="flex items-center">
+                        <span class="text-gray-600 mr-2 hidden sm:inline">Sort by:</span>
+                        <select class="border rounded-md px-3 py-1 focus:outline-none focus:ring-1 focus:ring-green-500">
+                            <option>Featured</option>
+                            <option>Price: Low to High</option>
+                            <option>Price: High to Low</option>
+                            <option>Newest</option>
+                            <option>Best Selling</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <!-- Product 1 -->
+                    <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="http://static.photos/clean/640x360/1" alt="Eco All-Purpose Cleaner" class="w-full h-full object-cover">
+                            <button class="absolute bottom-2 right-2 bg-green-500 text-white p-2 rounded-full hover:bg-green-600 transition duration-200">
+                                <i data-feather="shopping-cart" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-semibold text-gray-800 mb-1">Eco All-Purpose Cleaner</h3>
+                            <p class="text-sm text-gray-500 mb-2">500ml Spray Bottle</p>
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-green-600">$8.99</span>
+                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Bestseller</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 2 -->
+                    <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="http://static.photos/clean/640x360/2" alt="Glass & Mirror Cleaner" class="w-full h-full object-cover">
+                            <button class="absolute bottom-2 right-2 bg-green-500 text-white p-2 rounded-full hover:bg-green-600 transition duration-200">
+                                <i data-feather="shopping-cart" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-semibold text-gray-800 mb-1">Streak-Free Glass Cleaner</h3>
+                            <p class="text-sm text-gray-500 mb-2">750ml Refill</p>
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-green-600">$12.99</span>
+                                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">New</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 3 -->
+                    <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="http://static.photos/clean/640x360/3" alt="Bamboo Cleaning Brush Set" class="w-full h-full object-cover">
+                            <button class="absolute bottom-2 right-2 bg-green-500 text-white p-2 rounded-full hover:bg-green-600 transition duration-200">
+                                <i data-feather="shopping-cart" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-semibold text-gray-800 mb-1">Bamboo Brush Set</h3>
+                            <p class="text-sm text-gray-500 mb-2">3-Piece Eco Set</p>
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-green-600">$15.99</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 4 -->
+                    <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="http://static.photos/clean/640x360/4" alt="Lavender Floor Cleaner" class="w-full h-full object-cover">
+                            <button class="absolute bottom-2 right-2 bg-green-500 text-white p-2 rounded-full hover:bg-green-600 transition duration-200">
+                                <i data-feather="shopping-cart" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-semibold text-gray-800 mb-1">Lavender Floor Cleaner</h3>
+                            <p class="text-sm text-gray-500 mb-2">1L Concentrate</p>
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-green-600">$14.50</span>
+                                <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded">Sale</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 5 -->
+                    <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="http://static.photos/clean/640x360/5" alt="Citrus Disinfectant Spray" class="w-full h-full object-cover">
+                            <button class="absolute bottom-2 right-2 bg-green-500 text-white p-2 rounded-full hover:bg-green-600 transition duration-200">
+                                <i data-feather="shopping-cart" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-semibold text-gray-800 mb-1">Citrus Disinfectant</h3>
+                            <p class="text-sm text-gray-500 mb-2">400ml Spray</p>
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-green-600">$9.99</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 6 -->
+                    <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="http://static.photos/clean/640x360/6" alt="Microfiber Cloth Set" class="w-full h-full object-cover">
+                            <button class="absolute bottom-2 right-2 bg-green-500 text-white p-2 rounded-full hover:bg-green-600 transition duration-200">
+                                <i data-feather="shopping-cart" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-semibold text-gray-800 mb-1">Microfiber Cloth Set</h3>
+                            <p class="text-sm text-gray-500 mb-2">6-Piece Assorted</p>
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-green-600">$11.50</span>
+                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Bestseller</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 7 -->
+                    <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="http://static.photos/clean/640x360/7" alt="Oven & Grill Cleaner" class="w-full h-full object-cover">
+                            <button class="absolute bottom-2 right-2 bg-green-500 text-white p-2 rounded-full hover:bg-green-600 transition duration-200">
+                                <i data-feather="shopping-cart" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-semibold text-gray-800 mb-1">Oven & Grill Cleaner</h3>
+                            <p class="text-sm text-gray-500 mb-2">500ml Heavy Duty</p>
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-green-600">$13.25</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 8 -->
+                    <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="http://static.photos/clean/640x360/8" alt="Stainless Steel Polish" class="w-full h-full object-cover">
+                            <button class="absolute bottom-2 right-2 bg-green-500 text-white p-2 rounded-full hover:bg-green-600 transition duration-200">
+                                <i data-feather="shopping-cart" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-semibold text-gray-800 mb-1">Stainless Steel Polish</h3>
+                            <p class="text-sm text-gray-500 mb-2">200ml Bottle</p>
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-green-600">$10.75</span>
+                                <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded">Sale</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pagination -->
+                <div class="flex justify-center mt-10">
+                    <nav class="inline-flex rounded-md shadow">
+                        <a href="#" class="px-3 py-1 rounded-l-md border bg-white text-gray-500 hover:bg-gray-50">
+                            <i data-feather="chevron-left" class="w-4 h-4"></i>
+                        </a>
+                        <a href="#" class="px-4 py-1 border-t border-b border-gray-300 bg-white text-green-600 font-medium">1</a>
+                        <a href="#" class="px-4 py-1 border-t border-b border-gray-300 bg-white text-gray-500 hover:bg-gray-50">2</a>
+                        <a href="#" class="px-4 py-1 border-t border-b border-gray-300 bg-white text-gray-500 hover:bg-gray-50">3</a>
+                        <a href="#" class="px-4 py-1 border-t border-b border-r border-gray-300 bg-white text-gray-500 hover:bg-gray-50">4</a>
+                        <a href="#" class="px-3 py-1 rounded-r-md border bg-white text-gray-500 hover:bg-gray-50">
+                            <i data-feather="chevron-right" class="w-4 h-4"></i>
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white pt-12 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="bg-green-500 text-white p-2 rounded-lg font-bold text-xl w-max mb-4">PureBreeze</div>
+                    <p class="text-gray-300 mb-4">Your trusted source for premium cleaning products and soon-to-come authentic Turkish delights.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-white"><i data-feather="facebook"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-white"><i data-feather="instagram"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-white"><i data-feather="twitter"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-white"><i data-feather="youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Shop</h3>
+                    <ul class="space-y-2">
+                        <li><a href="cleaning-products.html" class="text-gray-300 hover:text-white">Cleaning Products</a></li>
+                        <li><a href="turkish-food.html" class="text-gray-300 hover:text-white">Turkish Food (Coming Soon)</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">New Arrivals</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Best Sellers</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Help</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">FAQs</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Shipping & Returns</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Track Order</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Company</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white">About Us</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Sustainability</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+                <p>&copy; 2023 PureBreeze. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('hamburger-active');
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Initialize feather icons and cart functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            feather.replace();
+            
+            // Simple cart counter
+            const cartButtons = document.querySelectorAll('[data-feather="shopping-cart"]').forEach(button => {
+                button.closest('button').addEventListener('click', () => {
+                    const counter = document.querySelector('.relative span');
+                    let count = parseInt(counter.textContent);
+                    counter.textContent = count + 1;
+                    
+                    // Simple animation
+                    counter.classList.add('animate-bounce');
+                    setTimeout(() => {
+                        counter.classList.remove('animate-bounce');
+                    }, 500);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
